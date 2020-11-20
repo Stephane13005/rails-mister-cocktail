@@ -1,17 +1,28 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @cocktail.photo.key %>');">
+  <div class="container">
+    <h1 class= "text-center"><%= @cocktail.name %></h1>
+  </div>
+</div>
+<br>
+
+
 <div class="container">
-	
-	
-	<h1><%= @cocktail.name %> </h1>
-	<%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
-<h2>Ingredients</h2> 
-	<% @cocktail.doses.each do |dose| %>
-<p><%= dose.description %> of <%= dose.ingredient.name %> - <%= link_to "Delete",
+<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card-body">
+    <h2 class="card-title">Ingredients</h2>
+    <p class="card-text"><% @cocktail.doses.each do |dose| %>
+<p><%= dose.description %> of <%= dose.ingredient.name %> - <%= link_to 'class="fas fa-trash"></i>'.html_safe,
                   dose_path(dose),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></p>
-                  <% end %>
-	
-	<%= link_to "Cocktails list", cocktails_path %> |
+                  <% end %></p>
 	<%= link_to "Add an ingredient", new_cocktail_dose_path(@cocktail) %>
+  </div>
+</div>
+
+
+
+	
+	
 
 </div>
